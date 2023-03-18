@@ -14,11 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 public class BilanganPrimaRequest {
 
-    @ApiModelProperty(notes = "Used when hit api /get",
-            example = "10", value = "Integer")
+    @ApiModelProperty(notes = "Used when hit api /get", example = "10", dataType = "Integer")
     private Integer number;
 
-    @ApiModelProperty(notes = "Used when hit api /store",
-            example = "[3,7,59,23,2,17]", value = "Array")
+    @ApiModelProperty(notes = "Used when hit api /sort", dataType = "List")
     private List<Integer> numberList;
 }
