@@ -1,6 +1,6 @@
 # coding-interview
 Coding Interview Java Springboot
-sebuah proyek aplikasi Restful API sederhana, terdapat dua endpoint untuk kita mendapatkan daftar bilangan bulat dan mengurutkan bilangan bulat dari terkecil ke terbesar.
+a simple Restful API application project, there are two endpoints for us to get a list of integers and sort the integers from smallest to largest.
 
 # spesification
   - Java 17
