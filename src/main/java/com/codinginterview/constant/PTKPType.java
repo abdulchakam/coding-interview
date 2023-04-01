@@ -12,8 +12,8 @@ public enum PTKPType {
     MARRIED_IDN(TaxConstant.INDONESIA, "K0", BigDecimal.valueOf(50000000)),
     MARRIED_HAVE_CHILD_IDN(TaxConstant.INDONESIA, "K1", BigDecimal.valueOf(75000000)),
 
-    SINGLE_VDN(TaxConstant.VIETNAM, "TK", BigDecimal.valueOf(15000000)),
-    MARRIED_VDN(TaxConstant.VIETNAM, "K0", BigDecimal.valueOf(30000000));
+    SINGLE_VNM(TaxConstant.VIETNAM, "TK", BigDecimal.valueOf(15000000)),
+    MARRIED_VNM(TaxConstant.VIETNAM, "K0", BigDecimal.valueOf(30000000));
 
     private String country;
     private String code;

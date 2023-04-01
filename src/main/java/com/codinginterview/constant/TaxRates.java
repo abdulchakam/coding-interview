@@ -12,8 +12,8 @@ public enum TaxRates {
     RANGE2_IDN(TaxConstant.INDONESIA, "Range 50-250 Million", "10%", BigDecimal.valueOf(0.1)),
     RANGE3_IDN(TaxConstant.INDONESIA, "More Than 250 Million", "15%", BigDecimal.valueOf(0.15)),
 
-    RANGE1_VDN(TaxConstant.INDONESIA, "Under 50 Million", "2,5%", BigDecimal.valueOf(0.025)),
-    RANGE2_VDN(TaxConstant.INDONESIA, "More Than 50 Million", "7,5%", BigDecimal.valueOf(0.075));
+    RANGE1_VNM(TaxConstant.VIETNAM, "Under 50 Million", "2,5%", BigDecimal.valueOf(0.025)),
+    RANGE2_VNM(TaxConstant.VIETNAM, "More Than 50 Million", "7,5%", BigDecimal.valueOf(0.075));
 
     private String country;
     private String description;

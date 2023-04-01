@@ -8,7 +8,6 @@ import com.codinginterview.dto.CalculateTaxResponse;
 import com.codinginterview.dto.ComponentSalary;
 import com.codinginterview.dto.Employee;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -53,15 +52,16 @@ public class CalculateTaxService {
                     finalTax = firstTaxIdn;
                 }
             } else if (TaxConstant.VIETNAM.equalsIgnoreCase(employee.getCountry()) && netIncome.compareTo(BigDecimal.ZERO) > 0 ) {
+                // When net income more than 50 million
                 if (netIncome.compareTo(TaxConstant.FIFTY_MILLION) > 0) {
-                    firstTaxVnd = TaxConstant.FIFTY_MILLION.multiply(TaxRates.RANGE1_VDN.getValue());
+                    firstTaxVnd = TaxConstant.FIFTY_MILLION.multiply(TaxRates.RANGE1_VNM.getValue());
                     BigDecimal tempSecondTax = netIncome.subtract(TaxConstant.FIFTY_MILLION);
-                    secondTax = tempSecondTax.multiply(TaxRates.RANGE2_VDN.getValue());
+                    secondTax = tempSecondTax.multiply(TaxRates.RANGE2_VNM.getValue());
 
                     finalTax = firstTaxVnd.add(secondTax);
 
-                } else if (netIncome.compareTo(TaxConstant.FIFTY_MILLION) <= 0) {
-                    firstTaxVnd = netIncome.multiply(TaxRates.RANGE1_VDN.getValue());
+                } else if (netIncome.compareTo(TaxConstant.FIFTY_MILLION) <= 0) { // When net income less than 50 million
+                    firstTaxVnd = netIncome.multiply(TaxRates.RANGE1_VNM.getValue());
                     finalTax = firstTaxVnd;
                 }
             }
@@ -89,6 +89,7 @@ public class CalculateTaxService {
             BigDecimal netIncome;
             BigDecimal insurance = employee.getInsurance();
 
+            // Set ptkp for employee from indonesia
             if (TaxConstant.INDONESIA.equalsIgnoreCase(employee.getCountry())) {
                 if (TaxConstant.SINGLE.equalsIgnoreCase(employee.getMaritalStatus())) {
                     ptkp = PTKPType.SINGLE_IDN.getValue();
@@ -105,12 +106,12 @@ public class CalculateTaxService {
 
                 netIncome = nettSalary.subtract(ptkp);
 
-            } else if (TaxConstant.VIETNAM.equalsIgnoreCase(employee.getCountry())) {
+            } else if (TaxConstant.VIETNAM.equalsIgnoreCase(employee.getCountry())) { // Set ptkp for employee from vietnam
                 if (TaxConstant.SINGLE.equalsIgnoreCase(employee.getMaritalStatus())) {
-                    ptkp = PTKPType.SINGLE_VDN.getValue();
+                    ptkp = PTKPType.SINGLE_VNM.getValue();
 
                 } else if (TaxConstant.MARRIED.equalsIgnoreCase(employee.getMaritalStatus())) {
-                    ptkp = PTKPType.MARRIED_VDN.getValue();
+                    ptkp = PTKPType.MARRIED_VNM.getValue();
 
                 } else {
                     throw new RuntimeException("Possible value marital status Single or Married");
